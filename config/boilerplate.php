@@ -49,6 +49,12 @@ return [
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]
+    ],
+    'rumah' => [
+        'validation_rules' => [
+            'token' => 'required',
+            'show' => 'required'
+        ]
     ]
 
 ];

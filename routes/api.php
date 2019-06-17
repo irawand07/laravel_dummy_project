@@ -18,13 +18,17 @@ $api->version('v1', function (Router $api) {
         $api->get('me', 'App\\Api\\V1\\Controllers\\UserController@me');
     });
 
+    //coba add api rumah
+    $api->group(['prefix' => 'rumah','middleware' => 'jwt.auth'], function(Router $api) {
+        $api->post('list', 'App\\Api\\V1\\Controllers\\RumahController@list');
+    });
+
     $api->group(['middleware' => 'jwt.auth'], function(Router $api) {
         $api->get('protected', function() {
             return response()->json([
                 'message' => 'Access to protected resources granted! You are seeing this text as you provided the token correctly.'
             ]);
         });
-
         $api->get('refresh', [
             'middleware' => 'jwt.refresh',
             function() {
